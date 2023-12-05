@@ -2,6 +2,7 @@
 #include <random>
 
 class Bernoulli : public Distribution {
+    public:
     bool exp;
     _fp gamma;
 

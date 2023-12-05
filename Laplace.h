@@ -1,4 +1,5 @@
 #include <Distribution.h>
+#include <Bernoulli.h>
 
 using namespace std;
 
@@ -6,6 +7,7 @@ using namespace std;
 #define PARALLEL 1
 
 class Laplace : public Distribution {
+    public:
     Laplace(_fp mu, _fp lambda);
 
     Laplace(_fp lambda);

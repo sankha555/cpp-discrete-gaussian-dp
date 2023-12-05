@@ -2,11 +2,14 @@
 
 Bernoulli::Bernoulli(_fp p, bool exp = false){    
     if(exp){
+        assert(p < 0);
+
         // sample from Bernoulli(e^-p)
         // TODO: fix this 
         this->centre = -p;
         this->gamma = p;
     }else{
+        assert(p > 0);
         // sample from Bernoulli(p)
         this->centre = p;
     }
@@ -26,7 +29,7 @@ _fp Bernoulli::getSample(){
                     break;
                 }
             }
-            return k&1; // if k is odd, return 1; else return 0;
+            return k & 1; // if k is odd, return 1; else return 0;
         }else{
             _fp gamma = this->gamma;
             int gamma_floor = (int) gamma.numerator() / gamma.denominator();
@@ -42,7 +45,7 @@ _fp Bernoulli::getSample(){
         }
     }
     
-    uniform_int_distribution<int> uniform(0, this->centre.denominator());
+    uniform_int_distribution<int> uniform(0, this->centre.denominator()-1);
     int u = uniform(Distribution::generator);
     return u < this->centre.numerator();
 }
